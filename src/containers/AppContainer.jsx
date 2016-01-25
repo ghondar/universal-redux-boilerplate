@@ -1,7 +1,5 @@
 import React, { PropTypes, Component } from 'react'
 
-import Layout from '../components/Layout.jsx'
-
 export default class AppContainer extends Component{
 
   constructor(props, context) {
@@ -9,10 +7,12 @@ export default class AppContainer extends Component{
   }
 
   render() {
+    const { children } = this.props
+
     return (
-      <Layout>
-        {React.cloneElement(this.props.children, { ...this.props })}
-      </Layout>
+      <div>
+        {children}
+      </div>
     )
   }
 }

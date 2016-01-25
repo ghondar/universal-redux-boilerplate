@@ -7,7 +7,6 @@ const initialState = {
 export default function counterStore(state = initialState, action) {
   switch (action.type) {
     case INCREMENT:
-      debugger
       return {
         ...state,
         count: state.count + 1

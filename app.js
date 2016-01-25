@@ -4,7 +4,10 @@ import favicon from 'serve-favicon'
 import logger from 'morgan'
 import bodyParser from 'body-parser'
 import session from 'express-session'
-import ReactEngine from 'react-engine'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import config from './webpack.config'
 
 import routes from './src/routes/routes.jsx'
 
@@ -12,18 +15,18 @@ import { SESSION_PASS } from './config/config'
 
 const app = express()
 
-app.engine('.jsx', ReactEngine.server.create({
-  routes: routes,
-  routesFilePath: join(__dirname, 'src', 'routes', 'routes.jsx'),
-  performanceCollector: stats => {
-    console.log(stats);
-  }
-}))
+// app.engine('.jsx', ReactEngine.server.create({
+//   routes: routes,
+//   routesFilePath: join(__dirname, 'src', 'routes', 'routes.jsx'),
+//   performanceCollector: stats => {
+//     console.log(stats);
+//   }
+// }))
 
 // view engine setup
-app.set('views', join(__dirname, 'src', 'containers'))
-app.set('view engine', 'jsx')
-app.set('view', ReactEngine.expressView)
+// app.set('views', join(__dirname, 'src', 'containers'))
+// app.set('view engine', 'jsx')
+// app.set('view', ReactEngine.expressView)
 
 // uncomment after placing your favicon in /public
 app.use(favicon(join(__dirname, '/public/favicon.ico')))
@@ -35,30 +38,14 @@ app.use(favicon(join(__dirname, '/public/favicon.ico')))
 //   resave: false,
 //   saveUninitialized: false
 // }))
+const compiler = webpack(config)
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
+app.use(webpackHotMiddleware(compiler))
 app.use(express.static(join(__dirname, 'public')))
 app.use(express.static(join(__dirname, 'bundle')))
 
-app.get('*', (req, res, next) => {
-  res.render(req.url, { titulo: 'Contador' })
-})
-
-app.use(function(err, req, res, next) {
-  console.error(err);
-
-  // http://expressjs.com/en/guide/error-handling.html
-  if (res.headersSent) {
-    return next(err);
-  }
-
-  if (err._type && err._type === ReactEngine.reactRouterServerErrors.MATCH_REDIRECT) {
-    return res.redirect(302, err.redirectLocation);
-  } else if (err._type && err._type === ReactEngine.reactRouterServerErrors.MATCH_NOT_FOUND) {
-    return res.status(404).send('Route Not Found!');
-  } else {
-    // for ReactEngine.reactRouterServerErrors.MATCH_INTERNAL_ERROR or
-    // any other error we just send the error message back
-    return res.status(500).send(err.message);
-  }
+app.use((req, res, next) => {
+  res.sendFile(__dirname + '/index.html')
 })
 
 // catch 404 and forward to error handler

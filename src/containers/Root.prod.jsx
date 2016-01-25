@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import configureStore from '../store/configureStore'
-
-const store = configureStore()
+import { ReduxRouter } from 'redux-router'
 
 export default class Root extends Component{
   render() {
+    const { store } = this.props
+
     return (
       <Provider store={store}>
-        {this.props.children}
+        <ReduxRouter />
       </Provider>
     )
   }
+}
+
+Root.propTypes = {
+  store: PropTypes.object.isRequired
 }

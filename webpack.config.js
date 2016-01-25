@@ -9,24 +9,24 @@ const devFlagPlugin = new webpack.DefinePlugin({
 })
 
 const config = {
+  devtool: 'cheap-module-eval-source-map',
   cache: true,
   entry: [
-    'webpack-dev-server/client?http://localhost:' + port,
-    'webpack/hot/dev-server',
+    'webpack-hot-middleware/client',
     './src/app.jsx'
   ],
   output: {
     path: join(__dirname, '/build/'),
     filename: 'client.js',
-    publicPath: 'http://localhost:' + port + '/build/'
+    publicPath: '/build/'
   },
   resolveLoader: {
     fallback: join(__dirname, 'node_modules')
   },
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    devFlagPlugin
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [{

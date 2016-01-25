@@ -5,6 +5,7 @@ import * as counterActions from '../actions/counterActions'
 
 import Counter from '../components/Counter.jsx'
 
+@connect(state => state)
 export default class CounterContainer extends Component{
 
   constructor(props, context) {
@@ -12,11 +13,13 @@ export default class CounterContainer extends Component{
   }
 
   render() {
-    // const { dispatch, counterStore } = this.props
+    const { dispatch, counterStore, history } = this.props
 
     return (
       <Counter
-        />
+        history={history}
+        counterStore={counterStore}
+        {...bindActionCreators(counterActions, dispatch)}/>
     )
   }
 }

@@ -1,13 +1,12 @@
-import Client from 'react-engine/lib/client'
-import routes from './routes/routes.jsx'
+import 'babel-core/polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import Root from './containers/Root'
+import configureStore from './store/configureStore'
 
-const options = {
-  routes: routes,
-  viewResolver: function(viewName) {
-    return require('./containers/' + viewName)
-  }
-}
+const store = configureStore()
 
-document.addEventListener('DOMContentLoaded', function onLoad() {
-  Client.boot(options)
-})
+render(
+  <Root store={store} />,
+  document.getElementById('root')
+)

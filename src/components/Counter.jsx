@@ -12,26 +12,16 @@ export default class Counter extends Component{
 
     return (
       <div>
-        <button onClick={::this._handleIncrement}>Aumentar</button>
-        {/*<span>{counterStore.count}</span>*/}
-        <button onClick={::this._handleDecrement}>Disminuir</button>
-        <button onClick={this._handleClick.bind(this)}>Hola mundo</button>
-        <Link to='/home'>Home</Link>
+        <button onClick={increment}>Aumentar</button>
+        <span>{counterStore.count}</span>
+        <button onClick={decrement}>Disminuir</button>
+        <hr />
+        <button onClick={::this._handleClick}>Ir a otra pagina</button>
       </div>
     )
   }
 
   _handleClick() {
-    console.log('hola')
-  }
-
-  _handleIncrement() {
-    const { increment } = this.props
-    increment()
-  }
-
-  _handleDecrement() {
-    const { decrement } = this.props
-    decrement()
+    this.props.history.push('/home')
   }
 }
