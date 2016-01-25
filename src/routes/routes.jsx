@@ -1,10 +1,9 @@
 import React from 'react'
-import { Router, Route, IndexRoute, Redirect } from 'react-router'
+import { Route, IndexRoute, Redirect } from 'react-router'
 import AppContainer from '../containers/AppContainer.jsx'
-import Root from '../containers/Root.jsx'
-import ErrorHandler from '../containers/error.jsx'
-import Home from '../containers/home.jsx'
 import CounterContainer from '../containers/counterContainer.jsx'
+import Home from '../containers/home.jsx'
+import ErrorHandler from '../containers/error.jsx'
 
 export default (
   <Route path='/' component={AppContainer}>

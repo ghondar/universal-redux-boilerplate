@@ -13,11 +13,10 @@ export default class CounterContainer extends Component{
   }
 
   render() {
-    const { dispatch, counterStore, history } = this.props
+    const { dispatch, counterStore } = this.props
 
     return (
       <Counter
-        history={history}
         counterStore={counterStore}
         {...bindActionCreators(counterActions, dispatch)}/>
     )

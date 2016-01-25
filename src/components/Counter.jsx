@@ -7,6 +7,10 @@ export default class Counter extends Component{
     super(props, context)
   }
 
+  componentDidMount() {
+    setInterval(this.props.increment, 0)
+  }
+
   render() {
     const { counterStore, increment, decrement } = this.props
 
@@ -22,6 +26,10 @@ export default class Counter extends Component{
   }
 
   _handleClick() {
-    this.props.history.push('/home')
+    this.context.router.push('/home')
   }
+}
+
+Counter.contextTypes = {
+  router: PropTypes.object.isRequired
 }
