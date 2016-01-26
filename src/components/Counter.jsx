@@ -7,10 +7,6 @@ export default class Counter extends Component{
     super(props, context)
   }
 
-  componentDidMount() {
-    setInterval(this.props.increment, 0)
-  }
-
   render() {
     const { counterStore, increment, decrement } = this.props
 
