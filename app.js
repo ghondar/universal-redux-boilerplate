@@ -5,6 +5,8 @@ import logger from 'morgan'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 
+import settings from './server/settings'
+import mainRoute from './server/routes/main'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
@@ -15,6 +17,13 @@ import routes from './src/routes/routes.jsx'
 import { SESSION_PASS } from './config/config'
 
 const app = express()
+
+const buildDir = '/build'
+const staticDir = join(settings.APP_HOME, buildDir)
+
+app.use('/static', express.static(staticDir));
+
+app.use('/', mainRoute)
 
 // uncomment after placing your favicon in /public
 app.use(favicon(join(__dirname, '/public/favicon.ico')))
@@ -33,8 +42,8 @@ app.use(webpackHotMiddleware(compiler))
 app.use(express.static(join(__dirname, 'public')))
 app.use(express.static(join(__dirname, 'bundle')))
 
-app.use((req, res, next) => {
-  res.sendFile(__dirname + '/index.html')
-})
+// app.use((req, res, next) => {
+//   res.sendFile(__dirname + '/index.html')
+// })
 
 export default app

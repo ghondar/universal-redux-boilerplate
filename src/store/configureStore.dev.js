@@ -10,18 +10,16 @@ const reducer = combineReducers(Object.assign({}, reducers, {
   routing: routeReducer
 }))
 
-const reduxRouterMiddleware = syncHistory(browserHistory)
+// const reduxRouterMiddleware = syncHistory(browserHistory)
 
 const finalCreateStore = compose(
   applyMiddleware(thunk),
-  applyMiddleware(reduxRouterMiddleware),
-  applyMiddleware(createLogger()),
   DevTools.instrument()
 )(createStore)
 
 export default function configureStore(initialState) {
   const store = finalCreateStore(reducer, initialState)
-  reduxRouterMiddleware.listenForReplays(store)
+  // reduxRouterMiddleware.listenForReplays(store)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
