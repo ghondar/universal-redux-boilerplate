@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
-import routes from '../routes/routes.jsx'
+import createRoutes from '../routes/routes.jsx'
 import DevTools from './DevTools.jsx'
+
+const routes = createRoutes(React, browserHistory)
 
 export default class Root extends Component{
   render() {
@@ -11,7 +13,7 @@ export default class Root extends Component{
     return (
       <Provider store={store}>
         <div>
-          <Router history={browserHistory}>{routes}</Router>
+          {routes}
           <DevTools />
         </div>
       </Provider>
