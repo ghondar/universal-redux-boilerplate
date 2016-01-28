@@ -1,13 +1,17 @@
 {
-  "name": "boilerplateRedux",
-  "version": "0.0.0",
-  "private": true,
+  "name": "universal-redux-boilerplate",
+  "version": "1.0.0",
+  "description": "Un simple boilerplate para el uso de universal js con react, redux y react-router",
+  "main": "bin/www",
   "scripts": {
     "start:dev": "SERVER=true DEV=true nodemon --exec babel-node --stage 0 -- ./bin/www",
     "start:prod": "SERVER=true PROD=true babel-node ./bin/www",
     "webpack:dev": "DEBUG=true babel-node webpack.server.js",
     "webpack:prod": "webpack --config webpack.config.production.js",
     "test": "jscs . && babel-node ./test/index.js"
+  },
+  "directories": {
+    "test": "test"
   },
   "dependencies": {
     "body-parser": "1.14.2",
@@ -49,5 +53,29 @@
     "webpack": "1.12.12",
     "webpack-dev-server": "1.14.1",
     "webpack-hot-middleware": "2.6.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghondar/universal-redux-boilerplate.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "redux",
+    "react-router",
+    "react-router-redux",
+    "boilerplate",
+    "hot",
+    "reload",
+    "live",
+    "edit",
+    "webpack",
+    "babel"
+  ],
+  "author": "Ghondar <abgv9221@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ghondar/universal-redux-boilerplate/issues"
+  },
+  "homepage": "https://github.com/ghondar/universal-redux-boilerplate#readme"
 }

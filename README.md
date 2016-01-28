@@ -61,7 +61,7 @@ El `webpack.server.js` hace correr un server en el puerto 8888 para el bundle de
 
 ### Server
 
-El `www/bin` basandome el express-generator este seria el archivo que ejecutaría el proyecto en el puerto 3000 por defecto este a su ver requiere del archivo `App.jsx` para servir el contenido dinámico. Los assets son servidos desde la carpeta `build` usando `express.static`
+El `bin/www` basandome el express-generator este seria el archivo que ejecutaría el proyecto en el puerto 3000 por defecto este a su ver requiere del archivo `App.jsx` para servir el contenido dinámico. Los assets son servidos desde la carpeta `build` usando `express.static`
 
 ## Scripts
 
