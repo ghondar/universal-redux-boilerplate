@@ -1,4 +1,6 @@
 export default ({ settings, rootMarkup, initialState }) => {
+  const bundle = process.env.PROD ? '/static/client.js' : 'http://localhost:8888/static/client.js'
+
   return `
 <!doctype html>
 <html>
@@ -10,7 +12,7 @@ export default ({ settings, rootMarkup, initialState }) => {
     <script>
       window.BOOTSTRAP_CLIENT_STATE = ${JSON.stringify(initialState)}
     </script>
-    <script src="/static/client.js"></script>
+    <script src=${bundle}></script>
   </body>
 </html>
   `;

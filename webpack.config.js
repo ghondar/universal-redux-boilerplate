@@ -1,32 +1,32 @@
-import webpack from 'webpack'
-import { join } from 'path'
-import autoprefixer from 'autoprefixer'
-
-const port = process.env.HOT_LOAD_PORT || 8888;
+var webpack = require('webpack')
+var path = require('path')
+var autoprefixer = require('autoprefixer')
 
 const devFlagPlugin = new webpack.DefinePlugin({
   DEV: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
 })
 
 const config = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval',
   cache: true,
   entry: [
-    'webpack-hot-middleware/client',
-    './src/app.jsx'
+    'webpack-dev-server/client?http://localhost:8888',
+    'webpack/hot/only-dev-server',
+    './src/App.jsx'
   ],
   output: {
-    path: join(__dirname, '/build/'),
-    filename: 'client.js',
-    publicPath: '/build/'
+    path: __dirname + '/static/',
+    publicPath: 'http://localhost:8888/static/',
+    filename: 'client.js'
   },
   resolveLoader: {
-    fallback: join(__dirname, 'node_modules')
+    fallback: path.join(__dirname, 'node_modules')
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    devFlagPlugin
   ],
   module: {
     loaders: [{
@@ -41,7 +41,7 @@ const config = {
     }, {
       test: /\.js$/,
       loaders: ['react-hot', 'babel'],
-      include: join(__dirname, 'node_modules', 'redux-devtools', 'src')
+      include: path.join(__dirname, 'node_modules', 'redux-devtools', 'src')
     }, {
       test: /\.json$/,
       loader: 'json-loader'
@@ -81,12 +81,12 @@ const config = {
   postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
   resolve: {
     alias: {
-      'redux-devtools/lib': join(__dirname, 'node_modules', 'redux-devtools', 'src'),
-      'redux-devtools': join(__dirname, 'node_modules', 'redux-devtools', 'src'),
-      react: join(__dirname, 'node_modules', 'react')
+      'redux-devtools/lib': path.join(__dirname, 'node_modules', 'redux-devtools', 'src'),
+      'redux-devtools': path.join(__dirname, 'node_modules', 'redux-devtools', 'src'),
+      react: path.join(__dirname, 'node_modules', 'react')
     },
     extensions: ['', '.js', '.jsx', '.json']
   }
 }
 
-export default config
+module.exports = config
