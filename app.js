@@ -5,7 +5,6 @@ import logger from 'morgan'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 
-import settings from './server/settings'
 import mainRoute from './server/routes/main'
 import config from './webpack.config'
 
@@ -16,7 +15,7 @@ import { SESSION_PASS } from './config/config'
 const app = express()
 
 const buildDir = '/build'
-const staticDir = join(settings.APP_HOME, buildDir)
+const staticDir = join(__dirname, buildDir)
 
 // uncomment after placing your favicon in /public
 app.use(favicon(join(__dirname, '/public/favicon.ico')))

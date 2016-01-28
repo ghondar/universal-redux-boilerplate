@@ -1,5 +1,3 @@
-import appHome from '../../app-home'
-
-export default Object.assign({}, appHome, {
+export default {
   TITLE: 'Your Cool React App!'
-})
+}
