@@ -27,5 +27,5 @@ export default class Counter extends Component{
 }
 
 Counter.contextTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.object
 }
