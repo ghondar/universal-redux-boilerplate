@@ -6,74 +6,74 @@ var relativeAssetsPath = './build'
 var assetsPath = path.join(__dirname, relativeAssetsPath)
 
 module.exports = {
-  entry: ['./src/app.jsx'],
-  output: {
-    path: assetsPath,
-    filename: 'client.js',
+  entry   : [ './src/app.jsx' ],
+  output  : {
+    path      : assetsPath,
+    filename  : 'client.js',
     publicPath: '/static/'
   },
-  module: {
-    loaders: [{
-      test:  /\.jsx$/,
-      loaders: ['react-hot', 'babel'],
+  module  : {
+    loaders: [ {
+      test   :  /\.jsx$/,
+      loaders: [ 'react-hot', 'babel' ],
       exclude: /node_modules/
     }, {
-      test: /\.js$/,
-      loaders: ['babel'],
+      test   : /\.js$/,
+      loaders: [ 'babel' ],
       exclude: /node_modules/,
       include: __dirname
     }, {
-      test: /\.json$/,
+      test  : /\.json$/,
       loader: 'json-loader'
     }, {
-      test: /\.css$/,
+      test  : /\.css$/,
       loader: 'style-loader!css-loader!postcss-loader'
     },
     {
-      test: /\.woff($|\?)/,
+      test  : /\.woff($|\?)/,
       loader: 'url-loader?limit=10000&mimetype=application/font-woff'
     },
     {
-      test: /\.ttf($|\?)/,
+      test  : /\.ttf($|\?)/,
       loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
     },
     {
-      test: /\.eot($|\?)/,
+      test  : /\.eot($|\?)/,
       loader: 'file-loader'
     },
     {
-      test: /\.png$/,
+      test  : /\.png$/,
       loader: 'file-loader?limit=10000&minetype=image/png'
     },
     {
-      test: /\.jpg$/,
+      test  : /\.jpg$/,
       loader: 'file-loader?limit=10000&minetype=image/jpg'
     },
     {
-      test: /\.gif$/,
+      test  : /\.gif$/,
       loader: 'file-loader'
     },
     {
-      test: /\.svg($|\?)/,
+      test  : /\.svg($|\?)/,
       loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-    }]
+    } ]
   },
   progress: true,
-  resolve: {
+  resolve : {
     modulesDirectories: [
       'src',
       'node_modules'
     ],
-    extensions: ['', '.json', '.js', 'jsx']
+    extensions        : [ '', '.json', '.js', 'jsx' ]
   },
-  plugins: [
-    new CleanPlugin([relativeAssetsPath]),
+  plugins : [
+    new CleanPlugin([ relativeAssetsPath ]),
     new webpack.DefinePlugin({
-      __CLIENT__: true,
-      __SERVER__: false,
+      __CLIENT__     : true,
+      __SERVER__     : false,
       __DEVELOPMENT__: false,
-      __DEVTOOLS__: false,
-      __DEV__: false
+      __DEVTOOLS__   : false,
+      __DEV__        : false
     }),
 
     // ignore dev config

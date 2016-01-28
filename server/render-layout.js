@@ -15,5 +15,5 @@ export default ({ settings, rootMarkup, initialState }) => {
     <script src=${bundle}></script>
   </body>
 </html>
-  `;
-};
+  `
+}

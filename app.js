@@ -18,19 +18,19 @@ const app = express()
 const buildDir = '/build'
 const staticDir = join(settings.APP_HOME, buildDir)
 
-app.use('/static', express.static(staticDir));
-
-app.use('/', mainRoute)
-
 // uncomment after placing your favicon in /public
 app.use(favicon(join(__dirname, '/public/favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(session({
-  secret: SESSION_PASS,
-  resave: false,
+  secret           : SESSION_PASS,
+  resave           : false,
   saveUninitialized: false
 }))
+app.use(express.static(join(__dirname, 'public')))
+
+app.use('/static', express.static(staticDir))
+app.use('/', mainRoute)
 
 export default app

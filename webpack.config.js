@@ -7,85 +7,85 @@ const devFlagPlugin = new webpack.DefinePlugin({
 })
 
 const config = {
-  devtool: 'eval',
-  cache: true,
-  entry: [
+  devtool      : 'eval',
+  cache        : true,
+  entry        : [
     'webpack-dev-server/client?http://localhost:8888',
     'webpack/hot/only-dev-server',
     './src/App.jsx'
   ],
-  output: {
-    path: __dirname + '/static/',
+  output       : {
+    path      : __dirname + '/static/',
     publicPath: 'http://localhost:8888/static/',
-    filename: 'client.js'
+    filename  : 'client.js'
   },
   resolveLoader: {
     fallback: path.join(__dirname, 'node_modules')
   },
-  plugins: [
+  plugins      : [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     devFlagPlugin
   ],
-  module: {
-    loaders: [{
-      test:  /\.jsx$/,
-      loaders: ['react-hot', 'babel'],
+  module       : {
+    loaders: [ {
+      test   :  /\.jsx$/,
+      loaders: [ 'react-hot', 'babel' ],
       exclude: /node_modules/
     }, {
-      test: /\.js$/,
-      loaders: ['babel'],
+      test   : /\.js$/,
+      loaders: [ 'babel' ],
       exclude: /node_modules/,
       include: __dirname
     }, {
-      test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
+      test   : /\.js$/,
+      loaders: [ 'react-hot', 'babel' ],
       include: path.join(__dirname, 'node_modules', 'redux-devtools', 'src')
     }, {
-      test: /\.json$/,
+      test  : /\.json$/,
       loader: 'json-loader'
     }, {
-      test: /\.css$/,
+      test  : /\.css$/,
       loader: 'style-loader!css-loader!postcss-loader'
     },
     {
-      test: /\.woff($|\?)/,
+      test  : /\.woff($|\?)/,
       loader: 'url-loader?limit=10000&mimetype=application/font-woff'
     },
     {
-      test: /\.ttf($|\?)/,
+      test  : /\.ttf($|\?)/,
       loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
     },
     {
-      test: /\.eot($|\?)/,
+      test  : /\.eot($|\?)/,
       loader: 'file-loader'
     },
     {
-      test: /\.png$/,
+      test  : /\.png$/,
       loader: 'file-loader?limit=10000&minetype=image/png'
     },
     {
-      test: /\.jpg$/,
+      test  : /\.jpg$/,
       loader: 'file-loader?limit=10000&minetype=image/jpg'
     },
     {
-      test: /\.gif$/,
+      test  : /\.gif$/,
       loader: 'file-loader'
     },
     {
-      test: /\.svg($|\?)/,
+      test  : /\.svg($|\?)/,
       loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-    }]
+    } ]
   },
-  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-  resolve: {
-    alias: {
+  postcss      : [ autoprefixer({ browsers: [ 'last 2 versions' ] }) ],
+  resolve      : {
+    alias     : {
       'redux-devtools/lib': path.join(__dirname, 'node_modules', 'redux-devtools', 'src'),
-      'redux-devtools': path.join(__dirname, 'node_modules', 'redux-devtools', 'src'),
-      react: path.join(__dirname, 'node_modules', 'react')
+      'redux-devtools'    : path.join(__dirname, 'node_modules', 'redux-devtools', 'src'),
+      react               : path.join(__dirname, 'node_modules', 'react')
     },
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: [ '', '.js', '.jsx', '.json' ]
   }
 }
 

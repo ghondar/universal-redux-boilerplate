@@ -5,15 +5,12 @@ import CounterContainer from '../containers/counterContainer.jsx'
 import Home from '../containers/home.jsx'
 import ErrorHandler from '../containers/error.jsx'
 
-export default (React, browserHistory) => {
-
-  return (
-    <Router history={ browserHistory }>
-      <Route path='/' component={AppContainer}>
-        <IndexRoute component={CounterContainer} />
-        <Route path='/home' component={Home}/>
-        <Route path='/error' component={ErrorHandler}/>
-      </Route>
-    </Router>
-  );
-}
+export default (React, browserHistory) => (
+  <Router history={ browserHistory }>
+    <Route path='/' component={AppContainer}>
+      <IndexRoute component={CounterContainer} />
+      <Route path='/home' component={Home}/>
+      <Route path='/error' component={ErrorHandler}/>
+    </Route>
+  </Router>
+)
