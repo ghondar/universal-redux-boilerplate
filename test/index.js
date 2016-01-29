@@ -1,1 +1,2 @@
-import './counter'
+require('babel/register')
+require('./counter')

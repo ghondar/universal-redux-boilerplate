@@ -8,7 +8,7 @@
     "start:prod": "SERVER=true PROD=true babel-node ./bin/www",
     "webpack:dev": "DEBUG=true babel-node webpack.server.js",
     "webpack:prod": "webpack --config webpack.config.production.js",
-    "test": "jscs . && babel-node ./test/index.js"
+    "test": "jscs . && node ./test/index.js"
   },
   "directories": {
     "test": "test"

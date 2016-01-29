@@ -23,7 +23,7 @@ test('Count', assert => {
   const expected = true
 
   assert.equal(actual, expected,
-    'should output the correct count text')
+    'La salida debe ser la correcta mostrada por el contador')
 
   assert.end()
 })
