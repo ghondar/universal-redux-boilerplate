@@ -8,5 +8,6 @@ node_js:
   - "5.4.0"
   - "5.5.0"
 install:
+  - npm install -g npm@2.x.x
   - npm install -g esprima jscs
   - npm install
