@@ -2,6 +2,10 @@
 
 Un simple boilerplate con los siguientes features:
 
+[![Build Status](https://travis-ci.org/ghondar/universal-redux-boilerplate.svg?branch=master)](https://travis-ci.org/ghondar/universal-redux-boilerplate)
+[![Dependencies](https://david-dm.org/Ghondar/universal-redux-boilerplate.svg?style=flat-square)](https://david-dm.org/Ghondar/universal-redux-boilerplate)
+[![DevDependencies](https://david-dm.org/Ghondar/universal-redux-boilerplate/dev-status.svg?style=flat-square)](https://david-dm.org/Ghondar/universal-redux-boilerplate#info=devDependencies&view=list)
+
 * Javascript Universal. *Renderizado y Ruteo con componentes, almacenes y rutas compartidas.*
 
 * Manejo de estados desde Redux.
@@ -16,7 +20,7 @@ Un simple boilerplate con los siguientes features:
 
 ## Inicializar el Proyecto
 
-Base mi proyecto en el boilerplate de elliot ([Referencia](https://github.com/cloverfield-tools/universal-react-boilerplate)), haciendo este para un mejor entendimiento en la comunidad hispanohablante
+Basé mi proyecto en el boilerplate de elliot ([Referencia](https://github.com/cloverfield-tools/universal-react-boilerplate)), haciendo este para un mejor entendimiento en la comunidad hispano-hablante
 
 ```
 npm install
@@ -61,7 +65,7 @@ El `webpack.server.js` hace correr un server en el puerto 8888 para el bundle de
 
 ### Server
 
-El `bin/www` basandome el express-generator este seria el archivo que ejecutaría el proyecto en el puerto 3000 por defecto este a su ver requiere del archivo `App.jsx` para servir el contenido dinámico. Los assets son servidos desde la carpeta `build` usando `express.static`
+El `bin/www` basandome en express-generator este sería el archivo que ejecutaría el proyecto en el puerto 3000 por defecto, este a su vez, requiere del archivo `App.jsx` para servir el contenido dinámico. Los assets son servidos desde la carpeta `build` usando `express.static`
 
 ## Scripts
 
