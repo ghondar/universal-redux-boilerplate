@@ -6,7 +6,7 @@ var relativeAssetsPath = './build'
 var assetsPath = path.join(__dirname, relativeAssetsPath)
 
 module.exports = {
-  entry   : [ './src/app.jsx' ],
+  entry   : [ './src/App.jsx' ],
   output  : {
     path      : assetsPath,
     filename  : 'client.js',
