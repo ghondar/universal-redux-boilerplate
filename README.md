@@ -73,6 +73,8 @@ La Mayoría de estos scripts están hecho para ser corridos en entorno unix/linu
 
 El `package.json` tiene los siguientes scripts:
 
+* `npm run start` corre el start:prod webpack:prod al mismo tiempo, recomendado para deployments automaticos 
+
 * `npm run start:dev` corre el servidor del proyecto en modo desarrollo
 
 * `npm run start:prod` corre el servidor del proyecto en modo producción
