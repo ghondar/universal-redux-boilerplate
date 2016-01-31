@@ -11,6 +11,7 @@ const reducer = combineReducers(Object.assign({}, reducers, {
 }))
 
 let finalCreateStore = null
+let reduxRouterMiddleware = null
 
 if(process.env.SERVER) {
   if(process.env.PROD) {
@@ -24,7 +25,7 @@ if(process.env.SERVER) {
     )(createStore)
   }
 }else {
-  const reduxRouterMiddleware = syncHistory(browserHistory)
+  reduxRouterMiddleware = syncHistory(browserHistory)
   finalCreateStore = compose(
     applyMiddleware(thunk),
     applyMiddleware(reduxRouterMiddleware),
@@ -35,6 +36,7 @@ if(process.env.SERVER) {
 
 export default function configureStore(initialState) {
   const store = finalCreateStore(reducer, initialState)
+  !process.env.SERVER && reduxRouterMiddleware.listenForReplays(store)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
