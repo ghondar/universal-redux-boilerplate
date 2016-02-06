@@ -5,8 +5,7 @@ import * as counterActions from '../actions/counterActions'
 
 import Counter from '../components/Counter.jsx'
 
-@connect(state => state)
-export default class CounterContainer extends Component{
+class CounterContainer extends Component{
 
   constructor(props, context) {
     super(props, context)
@@ -22,3 +21,5 @@ export default class CounterContainer extends Component{
     )
   }
 }
+
+export default connect(state => state)(CounterContainer)
