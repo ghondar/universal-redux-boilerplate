@@ -1,6 +1,10 @@
 var webpack = require('webpack')
 var path = require('path')
 var autoprefixer = require('autoprefixer')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
+
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools')).development()
 
 const devFlagPlugin = new webpack.DefinePlugin({
   DEV: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
@@ -9,6 +13,7 @@ const devFlagPlugin = new webpack.DefinePlugin({
 const config = {
   devtool      : 'eval',
   cache        : true,
+  context      : __dirname,
   entry        : [
     'webpack-dev-server/client?http://localhost:8888',
     'webpack/hot/only-dev-server',
@@ -24,9 +29,11 @@ const config = {
   },
   plugins      : [
     new webpack.optimize.OccurenceOrderPlugin(),
+    new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    devFlagPlugin
+    devFlagPlugin,
+    webpackIsomorphicToolsPlugin
   ],
   module       : {
     loaders: [ {
@@ -47,7 +54,7 @@ const config = {
       loader: 'json-loader'
     }, {
       test  : /\.css$/,
-      loader: 'style-loader!css-loader!postcss-loader'
+      loader: ExtractTextPlugin.extract('style', 'css!postcss-loader')
     },
     {
       test  : /\.woff($|\?)/,

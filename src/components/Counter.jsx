@@ -7,6 +7,10 @@ export default class Counter extends Component{
     super(props, context)
   }
 
+  componentDidMount() {
+    require('../css/app.css')
+  }
+
   render() {
     const { counterStore, increment, decrement } = this.props
 

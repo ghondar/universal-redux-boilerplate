@@ -1,12 +1,17 @@
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
 var CleanPlugin = require('clean-webpack-plugin')
 var relativeAssetsPath = './build'
+
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'))
 
 var assetsPath = path.join(__dirname, relativeAssetsPath)
 
 module.exports = {
   entry   : [ './src/App.jsx' ],
+  context : __dirname,
   output  : {
     path      : assetsPath,
     filename  : 'client.js',
@@ -27,7 +32,7 @@ module.exports = {
       loader: 'json-loader'
     }, {
       test  : /\.css$/,
-      loader: 'style-loader!css-loader!postcss-loader'
+      loader: ExtractTextPlugin.extract('style', 'css!postcss-loader')
     },
     {
       test  : /\.woff($|\?)/,
@@ -68,6 +73,7 @@ module.exports = {
   },
   plugins : [
     new CleanPlugin([ relativeAssetsPath ]),
+    new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true }),
     new webpack.DefinePlugin({
       __CLIENT__     : true,
       __SERVER__     : false,
@@ -94,6 +100,7 @@ module.exports = {
       compress: {
           warnings: false
         }
-    })
+    }),
+    webpackIsomorphicToolsPlugin
   ]
 }
