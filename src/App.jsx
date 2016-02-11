@@ -9,6 +9,6 @@ const store = configureStore()
 const routes = createRoutes(React, browserHistory)
 
 render(
-  <Root store={store}>{routes}</Root>,
+  <Root store={store} server={window ? window.BOOTSTRAP_CLIENT_STATE : {}}>{routes}</Root>,
   document.getElementById('root')
 )

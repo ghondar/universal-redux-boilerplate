@@ -5,3 +5,4 @@ bundle/
 build/
 .idea
 npm-debug.log
+webpack-stats.json

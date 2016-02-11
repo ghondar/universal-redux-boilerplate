@@ -2,6 +2,15 @@ import React, { PropTypes, Component } from 'react'
 import { Provider } from 'react-redux'
 
 export default class Root extends Component{
+
+  getChildContext() {
+    const { server } = this.props
+
+    return {
+      server
+    }
+  }
+
   render() {
     const { store, children } = this.props
 
@@ -13,6 +22,16 @@ export default class Root extends Component{
   }
 }
 
-Root.propTypes = {
-  store: PropTypes.object.isRequired
+Root.defaultProps = {
+  server: {}
 }
+
+Root.childContextTypes = {
+  server: PropTypes.object
+}
+
+Root.propTypes = {
+  store : PropTypes.object.isRequired,
+  server: PropTypes.object
+}
+

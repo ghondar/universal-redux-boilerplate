@@ -10,7 +10,6 @@ import createRoutes from '../../../src/routes/routes.jsx'
 
 const store = configureStore()
 const routes = createRoutes(React)
-const initialState = store.getState()
 
 export default (req, res) => {
   if(process.env.NODE_ENV === 'development') {
@@ -18,6 +17,8 @@ export default (req, res) => {
   }
 
   const settings = Object.assign({}, preSettings, { assets: webpackIsomorphicTools.assets() })
+  const initialState = {}
+
   match({ routes,
     location: req.url
   }, (error, redirectLocation, renderProps) => {
@@ -26,7 +27,7 @@ export default (req, res) => {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
-      const rootMarkup = render(React)(renderProps, store)
+      const rootMarkup = render(React)(renderProps, store, initialState)
       res.status(200).send(renderLayout({
         settings,
         rootMarkup,

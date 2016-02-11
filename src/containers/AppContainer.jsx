@@ -8,11 +8,16 @@ export default class AppContainer extends Component{
 
   render() {
     const { children } = this.props
+    const { server } = this.context
 
     return (
       <div>
-        {children}
+        {React.cloneElement(children, server)}
       </div>
     )
   }
+}
+
+AppContainer.contextTypes = {
+  server: PropTypes.object
 }
