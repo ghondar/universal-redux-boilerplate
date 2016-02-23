@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
+import { persistStore } from 'redux-persist'
 import { routerReducer } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import DevTools from '../containers/DevTools.jsx'
@@ -27,7 +28,7 @@ if(process.env.SERVER) {
 
 export default function configureStore(initialState) {
   const store = finalCreateStore(reducer, initialState)
-
+  persistStore(store)
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {

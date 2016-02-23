@@ -52,6 +52,7 @@
     "redux-devtools-dock-monitor": "1.1.0",
     "redux-devtools-log-monitor": "1.0.4",
     "redux-logger": "2.6.0",
+    "redux-persist": "2.0.1",
     "redux-thunk": "1.0.3",
     "script-loader": "0.6.1",
     "serve-favicon": "2.3.0",
