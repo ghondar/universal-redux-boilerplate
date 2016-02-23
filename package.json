@@ -1,6 +1,6 @@
 {
   "name": "universal-redux-boilerplate",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Un simple boilerplate para el uso de universal js con react, redux y react-router",
   "main": "bin/www",
   "scripts": {
