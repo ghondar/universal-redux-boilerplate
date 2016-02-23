@@ -13,16 +13,10 @@ const reducer = combineReducers(Object.assign({}, reducers, {
 let finalCreateStore = null
 
 if(process.env.SERVER) {
-  if(process.env.PROD) {
-    finalCreateStore = compose(
-      applyMiddleware(thunk)
-    )(createStore)
-  }else {
-    finalCreateStore = compose(
-      applyMiddleware(thunk),
-      DevTools.instrument()
-    )(createStore)
-  }
+  finalCreateStore = compose(
+    applyMiddleware(thunk),
+    DevTools.instrument()
+  )(createStore)
 }else {
   finalCreateStore = compose(
     applyMiddleware(thunk),
